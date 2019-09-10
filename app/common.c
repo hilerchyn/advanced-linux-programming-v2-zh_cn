@@ -11,7 +11,7 @@ int verbose;
 
 void debug(char *function_name, char *message)
 {
-    pritnf("%s -> %s\n", function_name, message);
+    printf("%s -> %s\n", function_name, message);
 }
 
 void *xmalloc(size_t size)
@@ -76,8 +76,7 @@ char *get_self_executable_directory()
         abort();
 
     result_length = last_slash - link_target;
-    result_length = (size_t)(char *)xmalloc(result_length + 1);
-    result = malloc(sizeof(char *));
+    result = (char *)xmalloc(result_length + 1);
     strncpy(result, link_target, result_length);
     result[result_length] = '\0';
 

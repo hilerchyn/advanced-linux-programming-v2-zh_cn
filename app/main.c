@@ -47,8 +47,11 @@ int main(int argc, char *const argv[])
     local_address.s_addr = INADDR_ANY;
     port = 0;
     verbose = 0;
+    debug("main", "before get module dir");        
     module_dir = get_self_executable_directory();
     assert(module_dir != NULL);
+
+    debug("main", "before do");
 
     do
     {
