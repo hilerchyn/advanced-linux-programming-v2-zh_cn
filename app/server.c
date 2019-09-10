@@ -139,7 +139,7 @@ static void handle_connection(int connection_fd)
         {
             char response[1024];
 
-            snpritnf(response, sizeof(response), bad_method_response_template, method);
+            snprintf(response, sizeof(response), bad_method_response_template, method);
             write(connection_fd, response, strlen(response));
         }
         else
@@ -178,7 +178,7 @@ void server_run(struct in_addr local_address, uint16_t port)
     socket_address.sin_addr = local_address;
 
     /* bind the socket to that address */
-    rval = bind(server_socket, &socket_address, sizeof(socket_address));
+    rval = bind(server_socket, (__SOCKADDR_ARG) &socket_address, sizeof(socket_address));
     if (rval != 0)
         system_error("bind");
 
