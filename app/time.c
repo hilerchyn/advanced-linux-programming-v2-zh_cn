@@ -26,7 +26,7 @@ void module_generate(int fd)
     ptm = localtime(&tv.tv_sec);
     strftime(time_string, sizeof(time_string), "%H:%M:%S", ptm);
 
-    fp = fdopen(fd, "W");
+    fp = fdopen(fd, "w");
     assert(fp != NULL);
     fprintf(fp, page_template, time_string);
     fflush(fp);
