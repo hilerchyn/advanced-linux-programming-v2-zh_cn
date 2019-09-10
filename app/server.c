@@ -200,6 +200,8 @@ void server_run(struct in_addr local_address, uint16_t port)
                (int)ntohs(socket_address.sin_port));
     }
 
+    printf("befere while\n");
+
     /* loop forever, handling connections */
     while (1)
     {

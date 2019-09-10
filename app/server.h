@@ -31,6 +31,9 @@ extern void error(const char *cause, const char *message);
     using free. this function calls abort on failure */
 extern char *get_self_executable_directory();
 
+/* debug */
+extern void debug(char *function_name, char *message);
+
 /*** Symbos defined in module.c ***/
 
 /* an instance of a loaded server module */

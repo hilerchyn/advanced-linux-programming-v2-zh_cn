@@ -9,6 +9,11 @@
 const char *program_name;
 int verbose;
 
+void debug(char *function_name, char *message)
+{
+    pritnf("%s -> %s\n", function_name, message);
+}
+
 void *xmalloc(size_t size)
 {
     void *ptr = malloc(size);
