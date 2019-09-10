@@ -29,6 +29,15 @@ void *xrealloc(void *ptr, size_t size)
         return ptr;
 }
 
+char *xstrdup(const char *s)
+{
+    char *copy = strdup(s);
+    if (copy == NULL)
+        abort();
+    else
+        return copy;
+}
+
 void system_error(const char *operation)
 {
     /* generate an error message for errno */
