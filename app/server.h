@@ -52,7 +52,7 @@ extern char *module_dir;
 /* attempt to load a server module with the name MODULE_PATH. if a
     server module exists with this path, loads the module and return a
     server_module structure representing it. otherwise, returns NULL.*/
-extern struct server_module *mudule_open(const char *module_path);
+extern struct server_module *module_open(const char *module_path);
 
 /* close a server module and deallocate the MODULE object */
 extern void module_close(struct server_module *module);
