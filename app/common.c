@@ -71,7 +71,8 @@ char *get_self_executable_directory()
         abort();
 
     result_length = last_slash - link_target;
-    result_length = (char *)xmalloc(result_length + 1);
+    result_length = (size_t)(char *)xmalloc(result_length + 1);
+    result = malloc(sizeof(char *));
     strncpy(result, link_target, result_length);
     result[result_length] = '\0';
 
