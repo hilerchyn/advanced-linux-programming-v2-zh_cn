@@ -31,5 +31,5 @@ server:		$(OBJECTS)
 $(OBJECTS): server.h
 
 $(MODULES):	\
-%.so 		%.c server.h
-	$(CC) $(CFLAGS) -fPIC -shared -o $@ $<
+	%.so: 		%.c server.h
+		$(CC) $(CFLAGS) -fPIC -shared -o $@ $<
