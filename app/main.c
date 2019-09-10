@@ -57,6 +57,13 @@ int main(int argc, char *const argv[])
     {
         next_option = getopt_long(argc, argv, short_options, long_options, NULL);
 
+        debug("main", "before switch");
+        printf("%d\n", next_option);
+
+        if(next_option<0){
+            break;
+        }
+
         switch (next_option)
         {
         case 'a':
@@ -67,6 +74,8 @@ int main(int argc, char *const argv[])
                 error(optarg, "invalid host name");
             else
                 local_address.s_addr = *((int *)(lcoal_host_name->h_addr_list[0]));
+
+            debug("main", "after address argument");
         }
         break;
 
@@ -94,11 +103,15 @@ int main(int argc, char *const argv[])
             long value;
             char *end;
 
+            debug("main", "before port argument");
+
             value = strtol(optarg, &end, 10);
             if (*end != '\0')
                 print_usage(1);
 
             port = (uint16_t)htons(value);
+
+            debug("main", "after port argument");
         }
         break;
 
@@ -114,7 +127,11 @@ int main(int argc, char *const argv[])
 
     } while (next_option != -1);
 
-    if (optind != argc)
+    debug("main", "after do...while");
+
+    printf("optind: %d, argc: %d\n", optind, argc);
+
+    if (optind+1 != argc)
         print_usage(1);
 
     if (verbose)
