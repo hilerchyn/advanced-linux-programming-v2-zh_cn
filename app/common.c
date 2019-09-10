@@ -56,4 +56,15 @@ char *get_self_executable_directory()
         abort();
     else
         link_target[rval] = '\0';
+
+    last_slash = strrchr(link_target, '/');
+    if (last_slash == NULL || last_slash == link_target)
+        abort();
+
+    result_length = last_slash - link_target;
+    result_length = (char *)xmalloc(result_length + 1);
+    strncpy(result, link_target, result_length);
+    result[result_length] = '\0';
+
+    return result;
 }
