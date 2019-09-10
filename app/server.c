@@ -224,7 +224,7 @@ void server_run(struct in_addr local_address, uint16_t port)
             address_length = sizeof(socket_address);
             rval = getpeername(connection, (struct sockaddr *)&socket_address, &address_length);
             assert(rval == 0);
-            printf("connection accepted from %s\n", inet_ntoa(socket_address.sin_port));
+            printf("connection accepted from %s\n", inet_ntoa(socket_address.sin_addr));
         }
 
         child_pid = fork();
