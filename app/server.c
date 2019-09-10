@@ -178,7 +178,7 @@ void server_run(struct in_addr local_address, uint16_t port)
     socket_address.sin_addr = local_address;
 
     /* bind the socket to that address */
-    rval = bind(server_socket, (__SOCKADDR_ARG) &socket_address, sizeof(socket_address));
+    rval = bind(server_socket, (__SOCKADDR_ARG)&socket_address, sizeof(socket_address));
     if (rval != 0)
         system_error("bind");
 
@@ -192,7 +192,7 @@ void server_run(struct in_addr local_address, uint16_t port)
         socklen_t address_length;
 
         address_length = sizeof(socket_address);
-        rval = getsockname(server_socket, &socket_address, &address_length);
+        rval = getsockname(server_socket, (struct sockaddr *)&socket_address, &address_length);
         assert(rval == 0);
         printf("server listening on %s:%d\n",
                inet_ntoa(socket_address.sin_addr),
@@ -209,7 +209,7 @@ void server_run(struct in_addr local_address, uint16_t port)
 
         /* accept a connection. this call blocks until a connection is ready */
         address_length = sizeof(remote_address);
-        connection = accept(server_socket, &remote_address, &address_length);
+        connection = accept(server_socket, (struct sockaddr *)&remote_address, &address_length);
         if (connection == -1)
         {
             if (errno == EINTR)
@@ -222,7 +222,7 @@ void server_run(struct in_addr local_address, uint16_t port)
         {
             socklen_t address_length;
             address_length = sizeof(socket_address);
-            rval = getpeername(connection, &socket_address, &address_length);
+            rval = getpeername(connection, (struct sockaddr *)&socket_address, &address_length);
             assert(rval == 0);
             printf("connection accepted from %s\n", inet_ntoa(socket_address.sin_port));
         }
