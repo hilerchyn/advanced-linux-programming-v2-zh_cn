@@ -240,7 +240,7 @@ void server_run(struct in_addr local_address, uint16_t port)
         }
         else if (child_pid > 0)
         {
-            close(handle_connection);
+            close(connection);
         }
         else
             system_error("fork");
