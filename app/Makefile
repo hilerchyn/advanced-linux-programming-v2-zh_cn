@@ -19,10 +19,10 @@ MODULES		= time.so
 .PHONY:		all clean
 
 
-all:		server $(MODULES)
+all:		server $(MODULES) golangShared
 
 clean:		
-	rm -f $(OBJECTS) $(MODULES) server
+	rm -f $(OBJECTS) $(MODULES) server golang golang.h golang.so
 
 server:		$(OBJECTS)
 	$(CC) $(CFLAGS) -Wl,-export-dynamic -o $@ $^ -ldl
@@ -33,3 +33,6 @@ $(OBJECTS): server.h
 $(MODULES):	\
 	%.so: 		%.c server.h
 		$(CC) $(CFLAGS) -fPIC -shared -o $@ $<
+
+golangShared: golang.go
+	 go build -buildmode=c-shared -o golang.so $<
